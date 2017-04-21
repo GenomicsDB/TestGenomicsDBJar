@@ -1,0 +1,23 @@
+language: java
+sudo: required
+dist: trusty
+jdk:
+  - oraclejdk8
+
+env:
+  - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-0.5.0-proto-3.0.0-beta-1-jar-with-dependencies.jar:.
+
+install:
+  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/0.5.0-proto-3.0.0-beta-1/genomicsdb-0.5.0-proto-3.0.0-beta-1-jar-with-dependencies.jar
+  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/0.5.0-proto-3.0.0-beta-1/genomicsdb-0.5.0-proto-3.0.0-beta-1.jar
+  - git clone https://github.com/Intel-HLS/GenomicsDB.git
+  - jar xf genomicsdb-0.5.0-proto-3.0.0-beta-1-jar-with-dependencies.jar libtiledbgenomicsdb.so
+  - ldd libtiledbgenomicsdb.so
+  - md5sum libtiledbgenomicsdb.so
+  - rm -f libtiledbgenomicsdb.so
+  - jar xf genomicsdb-0.5.0-proto-3.0.0-beta-1.jar libtiledbgenomicsdb.so
+  - md5sum libtiledbgenomicsdb.so
+
+script:
+  - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
+  - java TestGenomicsDBImporterWithMergedVCFHeader -L 1:1-100000 -w /tmp/ws -A test0 $TRAVIS_BUILD_DIR/GenomicsDB/tests/inputs/vcfs/t0.vcf.gz
