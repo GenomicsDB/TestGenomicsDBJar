@@ -21,3 +21,4 @@ install:
 script:
   - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
   - java TestGenomicsDBImporterWithMergedVCFHeader -L 1:1-100000 -w /tmp/ws -A test0 $TRAVIS_BUILD_DIR/GenomicsDB/tests/inputs/vcfs/t0.vcf.gz
+  - java TestGenomicsDB --query query.json
