@@ -5,18 +5,20 @@ jdk:
   - oraclejdk8
 
 env:
-  - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-0.5.0-proto-3.0.0-beta-1-jar-with-dependencies.jar:.
+  matrix:
+    - GENOMICSDB_VERSION=0.5.0-proto-3.0.0-beta-1 CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
+    - GENOMICSDB_VERSION=0.6.0-proto-3.0.0-beta-1 CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
 
 install:
-  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/0.5.0-proto-3.0.0-beta-1/genomicsdb-0.5.0-proto-3.0.0-beta-1-jar-with-dependencies.jar
-  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/0.5.0-proto-3.0.0-beta-1/genomicsdb-0.5.0-proto-3.0.0-beta-1.jar
-  - git clone https://github.com/Intel-HLS/GenomicsDB.git
-  - jar xf genomicsdb-0.5.0-proto-3.0.0-beta-1-jar-with-dependencies.jar libtiledbgenomicsdb.so
+  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
+  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}.jar
+  - jar xf genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar libtiledbgenomicsdb.so
   - ldd libtiledbgenomicsdb.so
   - md5sum libtiledbgenomicsdb.so
   - rm -f libtiledbgenomicsdb.so
-  - jar xf genomicsdb-0.5.0-proto-3.0.0-beta-1.jar libtiledbgenomicsdb.so
+  - jar xf genomicsdb-${GENOMICSDB_VERSION}.jar libtiledbgenomicsdb.so
   - md5sum libtiledbgenomicsdb.so
+  - git clone https://github.com/Intel-HLS/GenomicsDB.git
 
 script:
   - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
