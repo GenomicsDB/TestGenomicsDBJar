@@ -5,26 +5,15 @@ matrix:
     - os: linux
       sudo: required
       dist: trusty
-      jdk:
-        - oraclejdk8
+      env: GENOMICSDB_VERSION=0.8.1-proto-3.0.0-beta-1+uuid-static CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
     - os: osx
       osx_image: xcode6.4
-
-env:
-  matrix:
-    - GENOMICSDB_VERSION=0.7.0-proto-3.0.0-beta-1 CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
-    - GENOMICSDB_VERSION=0.8.0-proto-3.0.0-beta-1 CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
-    - GENOMICSDB_VERSION=0.8.1-proto-3.0.0-beta-1+uuid-static CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
+      env: GENOMICSDB_VERSION=0.8.1-proto-3.0.0-beta-1+uuid-static CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
 
 install:
-  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
-  - wget http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}.jar
-  - jar xf genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar libtiledbgenomicsdb.so
-  - ldd libtiledbgenomicsdb.so
-  - md5sum libtiledbgenomicsdb.so
-  - rm -f libtiledbgenomicsdb.so
-  - jar xf genomicsdb-${GENOMICSDB_VERSION}.jar libtiledbgenomicsdb.so
-  - md5sum libtiledbgenomicsdb.so
+  - curl -O http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
+  - curl -O http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}.jar
+  - bash -x ./run_checks.sh 
   - git clone https://github.com/Intel-HLS/GenomicsDB.git
 
 script:
