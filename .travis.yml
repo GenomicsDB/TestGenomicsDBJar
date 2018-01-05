@@ -15,6 +15,7 @@ install:
   - curl -O http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}.jar
   - bash -x ./run_checks.sh 
   - git clone https://github.com/Intel-HLS/GenomicsDB.git
+  - cd GenomicsDB && git checkout -b 0.8.1 0.8.1 && cd ..
 
 script:
   - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
