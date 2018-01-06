@@ -2,7 +2,7 @@
     "workspace" : "/tmp/ws",
     "array" : "test0",
     "scan_full": true,
-    "callset_mapping_file" : "callsets.json",
-    "vid_mapping_file" : "GenomicsDB/tests/inputs/vid.json",
+    "callset_mapping_file" : "/tmp/callset_pb.json",
+    "vid_mapping_file" : "/tmp/vid_pb.json",
     "reference_genome" : "GenomicsDB/tests/inputs/chr1_10MB.fasta.gz"
 }

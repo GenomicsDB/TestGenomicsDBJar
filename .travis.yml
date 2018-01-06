@@ -15,9 +15,9 @@ install:
   - curl -O http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}.jar
   - bash -x ./run_checks.sh 
   - git clone https://github.com/Intel-HLS/GenomicsDB.git
-  - cd GenomicsDB && git checkout -b 0.8.1 0.8.1 && cd ..
+  #- cd GenomicsDB && git checkout -b 0.8.1 0.8.1 && cd ..
 
 script:
   - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
-  - java TestGenomicsDBImporterWithMergedVCFHeader -L 1:1-100000 -w /tmp/ws -A test0 $TRAVIS_BUILD_DIR/GenomicsDB/tests/inputs/vcfs/t0.vcf.gz
+  - java TestGenomicsDBImporterWithMergedVCFHeader -L 1:1-100000 -w /tmp/ws -A test0 GenomicsDB/tests/inputs/vcfs/t0.vcf.gz GenomicsDB/tests/inputs/vcfs/t1.vcf.gz GenomicsDB/tests/inputs/vcfs/t2.vcf.gz --vidmap-output /tmp/vid_pb.json --callset-output /tmp/callset_pb.json
   - java TestGenomicsDB --query query.json
