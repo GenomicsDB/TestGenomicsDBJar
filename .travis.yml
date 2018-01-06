@@ -5,10 +5,10 @@ matrix:
     - os: linux
       sudo: required
       dist: trusty
-      env: GENOMICSDB_VERSION=0.8.1-proto-3.0.0-beta-1+uuid-static CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
+      env: GENOMICSDB_VERSION=0.8.1-caa697df9-proto-3.0.0-beta-1 CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
     - os: osx
       osx_image: xcode6.4
-      env: GENOMICSDB_VERSION=0.8.1-proto-3.0.0-beta-1+uuid-static CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
+      env: GENOMICSDB_VERSION=0.8.1-caa697df9-proto-3.0.0-beta-1 CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
 
 install:
   - curl -O http://repo1.maven.org/maven2/com/intel/genomicsdb/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
