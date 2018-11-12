@@ -11,7 +11,7 @@ matrix:
     - os: linux
       sudo: required
       dist: trusty
-    - os: osx
+    #- os: osx
 
 install:
   - curl -O ${MAVEN_REPOSITORY}/${GENOMICSDB_VERSION}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
