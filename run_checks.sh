@@ -1,4 +1,8 @@
 #!/bin/bash 
+if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar ]]; then
+  echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar"
+  exit 1
+fi
 osname=`uname -s`
 if [ "$osname" == "Linux" ]; then
 	LIBRARY_SUFFIX=so
