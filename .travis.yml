@@ -6,12 +6,14 @@ env:
     - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
     - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 
-matro x:
+matrix:
   include:
-    - os: linux
+    - name: Test on Linux
+      os: linux
       sudo: required
       dist: trusty
-    #- os: osx
+    - name: Test on OSX
+      os: osx
 
 install:
   - curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
