@@ -2,11 +2,11 @@ language: java
 
 env:
   global:
-    - GENOMICSDB_VERSION=1.0.0-20181106.031500-10
+    - GENOMICSDB_VERSION=1.0.0.beta1
     - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
-    - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.0.0-SNAPSHOT
+    - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 
-matrix:
+matro x:
   include:
     - os: linux
       sudo: required
@@ -23,4 +23,4 @@ install:
 script:
   - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
   - java TestGenomicsDBImporterWithMergedVCFHeader -L 1:1-100000 -w /tmp/ws -A test0 GenomicsDB/tests/inputs/vcfs/t0.vcf.gz GenomicsDB/tests/inputs/vcfs/t1.vcf.gz GenomicsDB/tests/inputs/vcfs/t2.vcf.gz --vidmap-output /tmp/vid_pb.json --callset-output /tmp/callset_pb.json
-  - java TestGenomicsDB --query query.json
+  - java TestGenomicsDB --pass_through_query_json --query query.json

@@ -3,10 +3,14 @@ if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar ]]; then
   echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar"
   exit 1
 fi
+if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}.jar ]]; then
+  echo "Could not find genomicsdb-${GENOMICSDB_VERSION}.jar"
+  exit 1
+fi
 osname=`uname -s`
 if [ "$osname" == "Linux" ]; then
 	LIBRARY_SUFFIX=so
-	jar xf genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar libtiledbgenomicsdb.${LIBRARY_SUFFIX}
+	jar xvf genomicsdb-${GENOMICSDB_VERSION}.jar libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 	if [[ -f libtiledbgenomicsdb.${LIBRARY_SUFFIX} ]]; then
 		ldd libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 		md5sum libtiledbgenomicsdb.${LIBRARY_SUFFIX}
@@ -16,7 +20,7 @@ if [ "$osname" == "Linux" ]; then
 	fi
 elif [ "$osname" == "Darwin" ]; then
 	LIBRARY_SUFFIX=dylib
-	jar xf genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar libtiledbgenomicsdb.{LIBRARY_SUFFIX}
+	jar xvf genomicsdb-${GENOMICSDB_VERSION}.jar libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 	if [[ -f libtiledbgenomicsdb.${LIBRARY_SUFFIX} ]]; then
 		otool -L libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 		md5 -r libtiledbgenomicsdb.${LIBRARY_SUFFIX}

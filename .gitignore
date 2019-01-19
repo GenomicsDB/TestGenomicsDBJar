@@ -1,0 +1,5 @@
+*.swp
+GenomicsDB/
+*.class
+libtiledbgenomicsdb.*
+genomicsdb*jar
