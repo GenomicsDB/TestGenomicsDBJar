@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export GENOMICSDB_VERSION=1.0.0.beta1
+export GENOMICSDB_VERSION=1.0.0-20190225.231734-14
 export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
-export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
+export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.0.0-SNAPSHOT/
 
 curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
 curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
@@ -11,6 +11,8 @@ bash -x ./run_checks.sh
 
 rm -fr GenomicsDB
 git clone https://github.com/GenomicsDB/GenomicsDB.git
+
+CLASSPATH=`pwd`/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
 
 echo "Compiling Test Classes..."
 rm -fr *.class

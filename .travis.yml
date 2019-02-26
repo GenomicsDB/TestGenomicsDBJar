@@ -2,9 +2,9 @@ language: java
 
 env:
   global:
-    - GENOMICSDB_VERSION=1.0.0.beta1
+    - GENOMICSDB_VERSION=1.0.0-20190225.231734-14
     - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
-    - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
+    - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.0.0-SNAPSHOT/
 
 matrix:
   include:
@@ -20,7 +20,6 @@ install:
   - curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
   - bash -x ./run_checks.sh 
   - git clone https://github.com/GenomicsDB/GenomicsDB.git
-  #- cd GenomicsDB && git checkout -b 0.8.1 0.8.1 && cd ..
 
 script:
   - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
