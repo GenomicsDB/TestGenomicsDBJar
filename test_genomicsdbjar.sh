@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export GENOMICSDB_VERSION=1.0.3
+export GENOMICSDB_VERSION=1.0.4
 export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
 export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 
