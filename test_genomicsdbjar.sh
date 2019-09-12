@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export GENOMICSDB_VERSION=1.1.0-beta
-export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
+export GENOMICSDB_VERSION=1.1.1-rc1
+export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
 export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 
-curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar
+curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
 curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
 
 bash -x ./run_checks.sh
