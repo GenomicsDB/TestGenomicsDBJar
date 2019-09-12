@@ -1,6 +1,6 @@
 #!/bin/bash 
-if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar ]]; then
-  echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar"
+if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone.jar ]]; then
+  echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-allinone.jar"
   exit 1
 fi
 if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}.jar ]]; then
