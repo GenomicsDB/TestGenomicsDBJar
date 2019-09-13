@@ -1,6 +1,6 @@
 {
     "workspace" : "/tmp/ws",
-    "array" : "test0",
+    "array_name" : "test0",
     "scan_full": true,
     "callset_mapping_file" : "/tmp/callset_pb.json",
     "vid_mapping_file" : "/tmp/vid_pb.json",

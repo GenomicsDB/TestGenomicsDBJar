@@ -1,0 +1,34 @@
+{
+  "callset_mapping_file": "/tmp/callset_pb.json",
+  "vid_mapping_file": "/tmp/vid_pb.json",
+  "workspace": "/tmp/ws",
+  "vcf_output_format": "z",
+  "num_parallel_vcf_file": 1,
+  "reference_genome" : "GenomicsDB/tests/inputs/chr1_10MB.fasta.gz",
+  "ignore_cells_not_in_partition": false,
+  "num_cells_per_tile": 1000,
+  "fail_if_updating": true,
+  "compress_tiledb_array": true,
+  "lb_callset_row_idx": 0,
+  "segment_size": 1048576,
+  "do_ping_pong_buffering": true,
+  "treat_deletions_as_intervals": true,
+  "produce_tiledb_array": true,
+  "size_per_column_partition": 43581440,
+  "discard_missing_gts": false,
+  "offload_vcf_output_processing": true,
+  "column_partitions": [
+  {
+   "begin":0,
+   "array_name":"test0",
+   "workspace": "/tmp/ws"
+  }
+  ],
+  "vcf_header_filename": "GenomicsDB/tests/inputs/template_vcf_header.vcf",
+  "row_based_partitioning": false,
+  "disable_synced_writes": true,
+  "produce_combined_vcf": false,
+  "delete_and_create_tiledb_array": false,
+  "discard_vcf_index": true
+
+}

@@ -24,7 +24,7 @@ echo "Done"
 echo
 
 echo "Starting query..."
-java TestGenomicsDB --pass_through_query_json --query query.json
+java TestGenomicsDB --query -l loader.json query.json
 echo "Done"
 echo
 
