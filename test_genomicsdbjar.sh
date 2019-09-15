@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export GENOMICSDB_VERSION=1.1.1-rc1
+export GENOMICSDB_VERSION=1.1.1
 export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
 export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 
