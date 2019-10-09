@@ -18,7 +18,7 @@ matrix:
 install:
   - curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
   - curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
-  - bash -x ./run_checks.sh 
+  - ./run_checks.sh 
   - git clone https://github.com/GenomicsDB/GenomicsDB.git
 
 script:
