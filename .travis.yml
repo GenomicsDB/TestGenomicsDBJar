@@ -2,9 +2,9 @@ language: java
 
 env:
   global:
-    - GENOMICSDB_VERSION=1.1.0-20190524.212530-2
+    - GENOMICSDB_VERSION=1.2.0-20191127.233149-2
     - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-jar-with-dependencies.jar:.
-    - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.1.0-SNAPSHOT/
+    - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.2.0-SNAPSHOT/
 
 matrix:
   include:
