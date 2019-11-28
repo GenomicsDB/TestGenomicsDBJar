@@ -6,8 +6,8 @@
 IS_SNAPSHOT=false
 
 if [ ${IS_SNAPSHOT} == true ]; then
-		export GENOMICSDB_VERSION=1.1.2-20191008.130318-1
-		export GENOMICSB_REPOSITORY_VERSION=1.1.2-SNAPSHOT
+		export GENOMICSDB_VERSION=1.2.0-20191127.233149-2
+		export GENOMICSB_REPOSITORY_VERSION=1.2.0-SNAPSHOT
 		export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
 else
 	export GENOMICSDB_VERSION=1.1.1
