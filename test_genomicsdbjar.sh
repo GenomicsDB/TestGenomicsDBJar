@@ -5,12 +5,14 @@
 ####
 IS_SNAPSHOT=false
 
+rm -fr /tmp/ws
+
 if [ ${IS_SNAPSHOT} == true ]; then
 		export GENOMICSDB_VERSION=1.2.0-20191127.233149-2
 		export GENOMICSB_REPOSITORY_VERSION=1.2.0-SNAPSHOT
 		export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
 else
-	export GENOMICSDB_VERSION=1.1.1
+	export GENOMICSDB_VERSION=1.2.0
 	#export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
   export MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 fi
@@ -46,6 +48,7 @@ echo &&
 
 echo "Starting query..." &&
 java TestGenomicsDB --query -l loader.json query.json &&
+rm -fr /tmp/ws &&
 echo "Query SUCCESS" &&
 echo
 
