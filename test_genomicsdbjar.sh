@@ -3,13 +3,13 @@
 ####
 # Set the following variables as necessary
 ####
-IS_SNAPSHOT=false
+IS_SNAPSHOT=true
 
 rm -fr /tmp/ws
 
 if [ ${IS_SNAPSHOT} == true ]; then
-		export GENOMICSDB_VERSION=1.2.1-20200117.231140-1
-		export GENOMICSB_REPOSITORY_VERSION=1.2.1-SNAPSHOT
+		export GENOMICSDB_VERSION=1.2.2-20200222.042525-1
+		export GENOMICSB_REPOSITORY_VERSION=1.2.2-SNAPSHOT
 		export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
 else
 	export GENOMICSDB_VERSION=1.2.1
@@ -20,11 +20,12 @@ fi
 ####
 # Leave the rest of the script alone
 ####
-
-export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
+echo "Using MAVEN_REPOSITORY=$MAVEN_REPOSITORY"
 
 curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
 curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
+
+export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
 
 ./run_checks.sh
 if [[ $? -ne 0 ]]; then
