@@ -9,12 +9,12 @@ if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}.jar ]]; then
 fi
 file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}-allinone.jar | cut -f1`
 if [ $file_size_kb == 0 ]; then
-  echo "genomicsdb-${GENOMICSDB_VERSION}-allinone.jar has no contensts"
+  echo "genomicsdb-${GENOMICSDB_VERSION}-allinone.jar has no contents"
   exit 1
 fi
 file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}.jar | cut -f1`
 if [ $file_size_kb == 0 ]; then
-  echo "genomicsdb-${GENOMICSDB_VERSION}.jar has no contensts"
+  echo "genomicsdb-${GENOMICSDB_VERSION}.jar has no contents"
   exit 1
 fi
 osname=`uname -s`

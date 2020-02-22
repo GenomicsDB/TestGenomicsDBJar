@@ -18,7 +18,7 @@ else
 fi
 
 ####
-# Leave the rest of the script alone
+# Leave rest of the script alone
 ####
 echo "Using MAVEN_REPOSITORY=$MAVEN_REPOSITORY"
 
