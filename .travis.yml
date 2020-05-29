@@ -2,7 +2,7 @@ language: java
 
 env:
   global:
-    - GENOMICSDB_VERSION=1.2.3-20200529.184525-3
+    - GENOMICSDB_VERSION=1.2.3-20200529.231302-4
     - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
     - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.2.3-SNAPSHOT
       #- MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
