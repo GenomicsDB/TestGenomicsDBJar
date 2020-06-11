@@ -2,10 +2,10 @@ language: java
 
 env:
   global:
-    - GENOMICSDB_VERSION=1.2.3-20200610.205641-9
+    - GENOMICSDB_VERSION=1.3.0
     - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
-    - MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.2.3-SNAPSHOT
-      #- MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
+      #- MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.2.3-SNAPSHOT
+    - MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 matrix:
   include:
     - name: Test on Linux
