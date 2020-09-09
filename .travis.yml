@@ -1,11 +1,5 @@
 language: java
 
-env:
-  global:
-    - GENOMICSDB_VERSION=1.3.0
-    - CLASSPATH=$TRAVIS_BUILD_DIR/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
-      #- MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/1.2.3-SNAPSHOT
-    - MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 matrix:
   include:
     - name: Test on Linux
@@ -15,13 +9,5 @@ matrix:
     - name: Test on OSX
       os: osx
 
-install:
-  - curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
-  - curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
-  - ./run_checks.sh 
-  - git clone https://github.com/GenomicsDB/GenomicsDB.git
-
 script:
-  - javac -d . $TRAVIS_BUILD_DIR/GenomicsDB/example/java/*.java
-  - java TestGenomicsDBImporterWithMergedVCFHeader -L 1:1-100000 -w /tmp/ws -A test0 GenomicsDB/tests/inputs/vcfs/t0.vcf.gz GenomicsDB/tests/inputs/vcfs/t1.vcf.gz GenomicsDB/tests/inputs/vcfs/t2.vcf.gz --vidmap-output /tmp/vid_pb.json --callset-output /tmp/callset_pb.json
-  - java TestGenomicsDB --query -l loader.json query.json
+  - ./test_genomicsdbjar.sh
