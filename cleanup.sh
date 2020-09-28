@@ -1,6 +1,6 @@
-!#/bin/bash
+#!/bin/bash
 
-rm *class
+rm -f *class
 rm -fr GenomicsDB/
-rm genomicsdb-*
-rm libtiledbgenomicsdb.*
+rm -f genomicsdb-*
+rm -f libtiledbgenomicsdb.*
