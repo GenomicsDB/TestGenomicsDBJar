@@ -33,6 +33,12 @@ if [[ $? -ne 0 ]]; then
     exit 1
 fi
 
+javac GenomicsDBGetVersion.java && java GenomicsDBGetVersion
+if [[ $? -ne 0 ]]; then
+    echo "GenomicsDBGetVersion FAILED"
+    exit 1
+fi 
+
 rm -fr GenomicsDB
 git clone https://github.com/GenomicsDB/GenomicsDB.git
 
