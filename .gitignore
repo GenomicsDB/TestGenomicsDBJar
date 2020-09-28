@@ -1,5 +1,7 @@
-*.swp
-GenomicsDB/
-*.class
-libtiledbgenomicsdb.*
-genomicsdb*jar
+#emacs
+*~
+\#*\#
+.\#*
+
+#Xcode
+.DS_Store
