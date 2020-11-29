@@ -22,8 +22,17 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        
+      - name: Print github workspace
+        run: |
+          echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+          echo "github.workspace = ${{ github.workspace }}"
+          echo "Listing github workspace..."
+          ls $GITHUB_WORKSPACE
+          echo "current working dir= `pwd`"
+          
 
       # Runs a single command using the runners shell
       - name: Test published genomicsdb.jar
-        run: test_genomicsdbjar.sh
+        run: $GITHUB_WORKSPACE/test_genomicsdbjar.sh
         
