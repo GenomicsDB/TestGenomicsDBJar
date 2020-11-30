@@ -7,8 +7,9 @@ on: [push, pull_request]
 jobs:
   # This workflow contains a single job called "test"
   test:
-    matrix:
-      os: [macOS-10.15, ubuntu-latest]
+    strategy:
+      matrix:
+        os: [macOS-10.15, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     
