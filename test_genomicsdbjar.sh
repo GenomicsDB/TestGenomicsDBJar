@@ -3,7 +3,7 @@
 ####
 # Set the following variables as necessary
 ####
-IS_SNAPSHOT=true
+IS_SNAPSHOT=false
 
 rm -fr /tmp/ws
 
@@ -12,7 +12,7 @@ if [ ${IS_SNAPSHOT} == true ]; then
 		export GENOMICSB_REPOSITORY_VERSION=1.4.0-SNAPSHOT
 		export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
 else
-	export GENOMICSDB_VERSION=1.3.2
+	export GENOMICSDB_VERSION=1.4.0
 	#export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
   export MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 fi
