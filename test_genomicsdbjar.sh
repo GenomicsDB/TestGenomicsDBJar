@@ -3,13 +3,13 @@
 ####
 # Set the following variables as necessary
 ####
-IS_SNAPSHOT=false
+IS_SNAPSHOT=true
 
 rm -fr /tmp/ws
 
 if [ ${IS_SNAPSHOT} == true ]; then
-		export GENOMICSDB_VERSION=1.4.2-20211004.204046-3	
-		export GENOMICSB_REPOSITORY_VERSION=1.4.2-SNAPSHOT
+		export GENOMICSDB_VERSION=1.4.3-20211216.233338-1	
+		export GENOMICSB_REPOSITORY_VERSION=1.4.3-SNAPSHOT
 		export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
 else
 	export GENOMICSDB_VERSION=1.4.2
