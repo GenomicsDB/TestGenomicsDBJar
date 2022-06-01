@@ -7,23 +7,26 @@ IS_SNAPSHOT=false
 
 rm -fr /tmp/ws
 
-if [ ${IS_SNAPSHOT} == true ]; then
-		export GENOMICSDB_VERSION=1.4.3-20211216.233338-1	
-		export GENOMICSB_REPOSITORY_VERSION=1.4.3-SNAPSHOT
-		export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
-else
-	export GENOMICSDB_VERSION=1.4.3
-	#export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
-  export MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
+# if GENOMICSDB_VERSION is already defined we expect the jar to already exist
+if [ -z "$GENOMICSDB_VERSION" ]; then
+    if [ ${IS_SNAPSHOT} == true ]; then
+        export GENOMICSDB_VERSION=1.4.3-20211216.233338-1	
+        export GENOMICSB_REPOSITORY_VERSION=1.4.3-SNAPSHOT
+        export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
+    else
+        export GENOMICSDB_VERSION=1.4.3
+        #export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
+        export MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
+    fi
+
+    ####
+    # Leave rest of the script alone
+    ####
+    echo "Using MAVEN_REPOSITORY=$MAVEN_REPOSITORY"
+
+    curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
+    curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
 fi
-
-####
-# Leave rest of the script alone
-####
-echo "Using MAVEN_REPOSITORY=$MAVEN_REPOSITORY"
-
-curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
-curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
 
 export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
 
