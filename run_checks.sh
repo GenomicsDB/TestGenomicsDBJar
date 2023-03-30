@@ -55,7 +55,7 @@ echo
 
 GENOMICSDB_TAG=${GENOMICSDB_TAG:-master}
 
-rm -fr GenomicsDB -b GENOMICSDB_TAG
+rm -fr GenomicsDB
 git clone https://github.com/GenomicsDB/GenomicsDB.git -b $GENOMICSDB_TAG
 
 echo "Compiling Test Classes..."
