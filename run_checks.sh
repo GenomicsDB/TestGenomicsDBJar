@@ -52,3 +52,4 @@ else
 	echo "Platform $osname is not supported"
 	exit 1
 fi
+export CLASSPATH=$cPath

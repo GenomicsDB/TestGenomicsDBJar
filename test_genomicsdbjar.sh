@@ -28,7 +28,6 @@ if [ -z "$GENOMICSDB_VERSION" ]; then
     curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
 fi
 
-export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
 
 ./run_checks.sh
 if [[ $? -ne 0 ]]; then
