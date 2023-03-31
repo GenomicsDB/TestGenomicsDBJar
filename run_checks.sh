@@ -1,15 +1,13 @@
 #!/bin/bash
 file_size_kb=0
-if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar ]]; then
-	if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone.jar ]]; then
-  		echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar or genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar"
- 		exit 1
-	else
-		file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}-allinone.jar | cut -f1`
-
-	fi
-else
+if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar && ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone.jar ]]; then
+  	echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar or genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar"
+ 	exit 1
+fi
+if [[ -f genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar ]]; then
 	file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar | cut -f1`
+else
+	file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}-allinone.jar | cut -f1`
 fi
 if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}.jar ]]; then
   echo "Could not find genomicsdb-${GENOMICSDB_VERSION}.jar"
