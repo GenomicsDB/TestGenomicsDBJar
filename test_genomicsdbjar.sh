@@ -46,8 +46,10 @@ fi
 echo "Done"
 echo
 
+GENOMICSDB_TAG=${GENOMICSDB_TAG:-v$GENOMICSDB_VERSION}
+
 rm -fr GenomicsDB
-git clone https://github.com/GenomicsDB/GenomicsDB.git
+git clone https://github.com/GenomicsDB/GenomicsDB.git -b $GENOMICSDB_TAG
 
 echo "Compiling Test Classes..."
 rm -fr *.class
