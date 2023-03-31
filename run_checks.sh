@@ -1,18 +1,15 @@
 #!/bin/bash
-file_Size_kb=0
-cPath=""
+file_size_kb=0
 if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar ]]; then
 	if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone.jar ]]; then
   		echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar or genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar"
  		exit 1
 	else
 		file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}-allinone.jar | cut -f1`
-		cPath=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
 
 	fi
 else
 	file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar | cut -f1`
-	cPath=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar-spark:.
 fi
 if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}.jar ]]; then
   echo "Could not find genomicsdb-${GENOMICSDB_VERSION}.jar"
@@ -52,4 +49,3 @@ else
 	echo "Platform $osname is not supported"
 	exit 1
 fi
-export CLASSPATH=$cPath

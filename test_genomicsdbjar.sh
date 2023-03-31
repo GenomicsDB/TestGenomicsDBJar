@@ -34,7 +34,11 @@ if [[ $? -ne 0 ]]; then
     echo "run_checks FAILED"
     exit 1
 fi
-
+if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar ]]; then
+    export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
+else
+    export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar:.
+fi
 echo
 echo "Basic GenomicsDBVersion check..."
 javac GenomicsDBGetVersion.java && java GenomicsDBGetVersion
