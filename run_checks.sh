@@ -43,6 +43,8 @@ else
 	exit 1
 fi
 
+export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
+
 echo
 echo "Basic GenomicsDBVersion check..."
 javac GenomicsDBGetVersion.java && java GenomicsDBGetVersion
@@ -54,6 +56,7 @@ echo "Done"
 echo
 
 GENOMICSDB_TAG=${GENOMICSDB_TAG:-master}
+echo GENOMICSDB_TAG=$GENOMICSDB_TAG
 
 rm -fr GenomicsDB
 git clone https://github.com/GenomicsDB/GenomicsDB.git -b $GENOMICSDB_TAG

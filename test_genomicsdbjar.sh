@@ -25,8 +25,6 @@ echo "Using MAVEN_REPOSITORY=$MAVEN_REPOSITORY"
 curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
 curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
 
-export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
-
 GENOMICSDB_TAG=v$GENOMICSDB_VERSION ./run_checks.sh
 if [[ $? -ne 0 ]]; then
     echo "run_checks FAILED"

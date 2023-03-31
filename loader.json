@@ -19,7 +19,9 @@
   "offload_vcf_output_processing": true,
   "column_partitions": [
   {
-   "begin":0,
+   "begin": {
+    "tiledb_column": 0
+   },
    "array_name":"test0",
    "workspace": "/tmp/ws"
   }
