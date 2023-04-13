@@ -28,14 +28,17 @@ if [ -z "$GENOMICSDB_VERSION" ]; then
     curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
 fi
 
-export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
 
 ./run_checks.sh
 if [[ $? -ne 0 ]]; then
     echo "run_checks FAILED"
     exit 1
 fi
-
+if [[ -f genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar ]]; then
+    export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar:.
+else
+    export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
+fi
 echo
 echo "Basic GenomicsDBVersion check..."
 javac GenomicsDBGetVersion.java && java GenomicsDBGetVersion
