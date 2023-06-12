@@ -16,22 +16,16 @@ else
   export MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
 fi
 
-####
-# Leave rest of the script alone
-####
-echo "Using MAVEN_REPOSITORY=$MAVEN_REPOSITORY"
-
-curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
-curl -O ${MAVEN_REPOSITORY}/genomicsdb-${GENOMICSDB_VERSION}.jar
-
-export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
-
 ./run_checks.sh
 if [[ $? -ne 0 ]]; then
     echo "run_checks FAILED"
     exit 1
 fi
-
+if [[ -f genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar ]]; then
+    export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone-spark.jar:.
+else
+    export CLASSPATH=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar:.
+fi
 echo
 echo "Basic GenomicsDBVersion check..."
 javac GenomicsDBGetVersion.java && java GenomicsDBGetVersion
