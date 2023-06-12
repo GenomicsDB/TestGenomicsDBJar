@@ -1,26 +1,41 @@
-#!/bin/bash 
-if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}-allinone.jar ]]; then
-  echo "Could not find genomicsdb-${GENOMICSDB_VERSION}-allinone.jar"
+#!/bin/bash
+
+check_jar() {
+  JAR=$1
+  FOUND=true
+  if [[ ! -f $JAR ]]; then
+    echo "Could not Find $JAR"
+    FOUND=false
+  else
+    declare -i file_size_kb
+    file_size_kb=`du -k $JAR | cut -f1`
+    if (( ${file_size_kb} < 10 )); then
+      grep -q "404 Not Found" $JAR
+      if [[ $? -eq 0 ]]; then
+        echo "$JAR NOT Found"
+        FOUND=false
+      fi
+    fi
+  fi
+}
+
+MAIN_JAR=genomicsdb-${GENOMICSDB_VERSION}.jar
+ALLINONE_JAR=genomicsdb-${GENOMICSDB_VERSION}-allinone.jar
+
+check_jar $MAIN_JAR
+if [[ $FOUND == false ]]; then
   exit 1
+else
+  check_jar $ALLINONE_JAR
+  if [[ $FOUND == false ]]; then
+    exit 1
+  fi
 fi
-if [[ ! -f genomicsdb-${GENOMICSDB_VERSION}.jar ]]; then
-  echo "Could not find genomicsdb-${GENOMICSDB_VERSION}.jar"
-  exit 1
-fi
-file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}-allinone.jar | cut -f1`
-if [ $file_size_kb == 0 ]; then
-  echo "genomicsdb-${GENOMICSDB_VERSION}-allinone.jar has no contents"
-  exit 1
-fi
-file_size_kb=`du -k genomicsdb-${GENOMICSDB_VERSION}.jar | cut -f1`
-if [ $file_size_kb == 0 ]; then
-  echo "genomicsdb-${GENOMICSDB_VERSION}.jar has no contents"
-  exit 1
-fi
+
 osname=`uname -s`
 if [ "$osname" == "Linux" ]; then
 	LIBRARY_SUFFIX=so
-	jar xvf genomicsdb-${GENOMICSDB_VERSION}.jar libtiledbgenomicsdb.${LIBRARY_SUFFIX}
+	jar xvf $MAIN_JAR libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 	if [[ -f libtiledbgenomicsdb.${LIBRARY_SUFFIX} ]]; then
 		ldd libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 		md5sum libtiledbgenomicsdb.${LIBRARY_SUFFIX}
@@ -30,7 +45,7 @@ if [ "$osname" == "Linux" ]; then
 	fi
 elif [ "$osname" == "Darwin" ]; then
 	LIBRARY_SUFFIX=dylib
-	jar xvf genomicsdb-${GENOMICSDB_VERSION}.jar libtiledbgenomicsdb.${LIBRARY_SUFFIX}
+	jar xvf $MAIN_JAR libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 	if [[ -f libtiledbgenomicsdb.${LIBRARY_SUFFIX} ]]; then
 		otool -L libtiledbgenomicsdb.${LIBRARY_SUFFIX}
 		md5 -r libtiledbgenomicsdb.${LIBRARY_SUFFIX}
