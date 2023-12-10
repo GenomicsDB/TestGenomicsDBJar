@@ -3,18 +3,18 @@
 ####
 # Set the following variables as necessary
 ####
-IS_SNAPSHOT=false
+IS_SNAPSHOT=true
 
 rm -fr /tmp/ws
 
 # if GENOMICSDB_VERSION is already defined we expect the jar to already exist
 if [ -z "$GENOMICSDB_VERSION" ]; then
     if [ ${IS_SNAPSHOT} == true ]; then
-        export GENOMICSDB_VERSION=1.4.3-20211216.233338-1	
-        export GENOMICSB_REPOSITORY_VERSION=1.4.3-SNAPSHOT
+        export GENOMICSDB_VERSION=1.5.2-20231210.030221-3	
+        export GENOMICSB_REPOSITORY_VERSION=1.5.2-SNAPSHOT
         export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
     else
-        export GENOMICSDB_VERSION=1.4.3
+        export GENOMICSDB_VERSION=1.5.2
         #export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
         export MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
     fi

@@ -9,7 +9,7 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [macOS-10.15, ubuntu-latest]
+        os: [macOS-12, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     
