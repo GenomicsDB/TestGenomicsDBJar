@@ -3,7 +3,7 @@
 ####
 # Set the following variables as necessary
 ####
-IS_SNAPSHOT=true
+IS_SNAPSHOT=false
 
 rm -fr /tmp/ws
 
