@@ -14,7 +14,7 @@ if [ -z "$GENOMICSDB_VERSION" ]; then
         export GENOMICSB_REPOSITORY_VERSION=1.5.2-SNAPSHOT
         export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/snapshots/org/genomicsdb/genomicsdb/${GENOMICSB_REPOSITORY_VERSION}
     else
-        export GENOMICSDB_VERSION=1.5.3
+        export GENOMICSDB_VERSION=1.5.5
         #export MAVEN_REPOSITORY=https://oss.sonatype.org/content/repositories/staging/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
         export MAVEN_REPOSITORY=https://repo1.maven.org/maven2/org/genomicsdb/genomicsdb/${GENOMICSDB_VERSION}
     fi
